@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note Detail</title>
+</head>
+<body>
+    <h1>Note Details</h1>
+    <p><strong>ID:</strong> {{ note.id }}</p>
+    <p><strong>Title:</strong> {{ note.title }}</p>
+    <p><strong>Content:</strong> {{ note.content }}</p>
+    <p><strong>Owner:</strong> {{ note.user.username }}</p>
+    
+    <hr>
+    <a href="/admin/">Back to Admin</a>
+</body>
+</html>

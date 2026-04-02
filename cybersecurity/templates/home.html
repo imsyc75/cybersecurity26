@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Notes</title>
+</head>
+<body>
+    <h1>Welcome, {{ request.user.username }}!</h1>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+    
+    <hr>
+    <h3>Your Notes:</h3>
+    <ul>
+        {% for note in notes %}
+            <li>
+                <a href="/note/{{ note.id }}/">{{ note.title }}</a>
+            </li>
+        {% empty %}
+            <li>You don't have any notes yet.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <a href="/search/">Search Notes (Admin Tool)</a>
+</body>
+</html>
