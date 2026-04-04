@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Notes</title>
+</head>
+<body>
+    <h1>Search Notes (Admin Tool - Internal Use)</h1>
+    <form method="GET" action="/search/">
+        <input type="text" name="query" value="{{ query }}" placeholder="Enter exact title...">
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+    <h3>Results:</h3>
+    <ul>
+        {% for note in notes %}
+            <li>
+                <strong>Title:</strong> {{ note.title }} <br>
+                <strong>Content:</strong> {{ note.content }} <br>
+                <strong>User ID:</strong> {{ note.user_id }}
+            </li>
+        {% empty %}
+            {% if query %}
+                <li>No notes found for "{{ query }}".</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>
