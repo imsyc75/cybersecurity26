@@ -23,10 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-z4xy^f_j-_z8xp58o+3-cfu&3j=-0n&=(w*cb!w8j$6$&_dud_'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# flaw4: Debug mode is enabled in production.
+# When an error occurs (e.g., accessing a non-existent path), 
+# Django will expose sensitive information like environment variables, 
+# database configurations, and project paths.
 DEBUG = True
-
 ALLOWED_HOSTS = []
+
+# fix4: Set DEBUG to False and configure ALLOWED_HOSTS for production.
+# Also, ensure custom 404 and 500 templates are provided in a real deployment.
+# DEBUG = False
+# ALLOWED_HOSTS = ['yourdomain.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
