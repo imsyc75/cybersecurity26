@@ -20,6 +20,7 @@ from cybersecurity import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('note/<int:note_id>/', views.view_note, name='view_note'),
     path('search/', views.search_notes, name='search_notes'),
