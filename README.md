@@ -3,8 +3,6 @@ This project is developed as part of the Cybersecurity 2026 course at the Univer
 
 The project focuses on five vulnerabilities from the OWASP Top 10 (2021) and explains how each issue works, why it is dangerous, and how it can be fixed.
 
-我帮你整理成标准 README 里常见的 **“Setup / Installation”** 部分格式，更清晰一点👇
-
 ---
 
 ## Installation
