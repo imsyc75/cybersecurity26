@@ -1,7 +1,8 @@
 # cybersecurity26
 This project is developed as part of the Cybersecurity 2026 course at the University of Helsinki. It demonstrates common security vulnerabilities by intentionally building software with known flaws, analyzing them, and providing solutions.
 
-The project focuses on five vulnerabilities from the OWASP Top 10 (2021) and explains how each issue works, why it is dangerous, and how it can be fixed.
+The project focuses on five vulnerabilities from the OWASP Top 10 (2021) and explains how each issue works and how it can be fixed.
+It includes 5 flaws: A01Broken Access Control, A03 Injection, A07 Identification and Authentication Failures, A05 Security Misconfiguration, A10:2021 – Server-Side Request Forgery (SSRF) 
 
 ---
 
