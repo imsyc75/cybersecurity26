@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Import Note</title>
+</head>
+<body>
+    <h1>Import Note Content from URL</h1>
+    <form method="GET" action="/import/">
+        <input type="text" name="url" value="{{ url }}" placeholder="https://example.com/api/data" style="width: 300px;">
+        <button type="submit">Fetch Content</button>
+    </form>
+
+    <hr>
+    <h3>Fetched Content:</h3>
+    <div style="border: 1px solid #ccc; padding: 10px; background: #f9f9f9;">
+        <pre>{{ content }}</pre>
+    </div>
+    
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>

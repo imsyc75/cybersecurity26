@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('note/<int:note_id>/', views.view_note, name='view_note'),
     path('search/', views.search_notes, name='search_notes'),
+    path('import/', views.import_note_from_url, name='import_note'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 ]

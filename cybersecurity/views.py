@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Note
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse
 from django.db import connection
+import requests
+from urllib.parse import urlparse
+import socket
 
 @login_required
 def view_note(request, note_id):
@@ -44,3 +47,37 @@ def search_notes(request):
         #     columns = [col[0] for col in cursor.description]
         #     notes = [dict(zip(columns, row)) for row in cursor.fetchall()]        
     return render(request, 'search.html', {'notes': notes, 'query': query})
+
+def import_note_from_url(request):
+    external_url = request.GET.get('url', '')
+    content = ""
+    
+    if external_url:
+        # flaw5: SSRF
+        # The program directly requests the URL provided by the user without performing any verification.
+        # An attacker could exploit this to request internal network resources 
+        # In my cases I use http://127.0.0.1:8000/admin/
+        try:
+            response = requests.get(external_url, timeout=5)
+            content = response.text
+        except Exception as e:
+            content = f"Error fetching content: {e}"
+
+        # fix5:
+        # 1. Only allow specific protocols (such as HTTPS).
+        # 2. Use a whitelist to restrict allowed domains.
+        # 3. Check the resolved IP address and reject private/local IP addresses.      
+        
+        # parsed_url = urlparse(external_url)
+        # if parsed_url.scheme not in ['http', 'https']:
+        #     return HttpResponse("Invalid scheme", status=400)
+        
+        # hostname = parsed_url.hostname
+        # ip_address = socket.gethostbyname(hostname)
+        # if ip_address.startswith(('127.', '10.', '192.168.', '172.16.')) or ip_address == '::1':
+        #     return HttpResponseForbidden("Access to internal network is prohibited.")
+        
+        # response = requests.get(external_url, timeout=5)
+        # content = response.text
+
+    return render(request, 'import_note.html', {'content': content, 'url': external_url})
